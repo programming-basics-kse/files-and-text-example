@@ -1,4 +1,5 @@
 ﻿import argparse
+import os
 
 from DataProvider import OlympicsDataProvider
 
@@ -29,5 +30,17 @@ parser.add_argument(
 args = parser.parse_args()
 print(args)
 
-provider = OlympicsDataProvider(args.data_path)
+
+path = args.data_path
+if not (os.path.exists(path) and os.path.isfile(path)):
+    print("Data Source path is not valid!")
+    exit(1)
+
+country, year = args.medals
+if (country not in ALLOWED_COUNTRIES or
+        year not in ALLOWED_YEARS):
+    print("Country or Year invalid!")
+    exit(1)
+
+provider = OlympicsDataProvider(path)
 print(len(provider.get_applicable_records()))
