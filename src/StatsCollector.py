@@ -5,7 +5,7 @@ class StatsCollector:
     @staticmethod
     def collect_medals_stats(provider: OlympicsDataProvider,
                              country_name: str,
-                             olympic_year: str):
+                             olympic_year: str) -> dict[str, int]:
         predicate = lambda item: (item.year == olympic_year and
                                   item.noc == country_name)
         applicable_records = provider.get_applicable_records(predicate)
@@ -19,12 +19,12 @@ class StatsCollector:
         for record in applicable_records:
             medals[record.medal] += 1
 
-        print(medals)
+        return medals
 
     @staticmethod
-    def medals_command_v2(records,
-                          country_name: str,
-                          olympic_year: str):
+    def collect_medals_stats_v2(records,
+                                country_name: str,
+                                olympic_year: str) -> dict[str, int]:
         medals = {
             "Gold": 0,
             "Silver": 0,
@@ -36,4 +36,4 @@ class StatsCollector:
                     and r.noc == country_name):
                 medals[r.medal] += 1
 
-        print(medals)
+        return medals

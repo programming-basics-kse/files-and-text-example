@@ -44,4 +44,10 @@ if (country not in ALLOWED_COUNTRIES or
     exit(1)
 
 provider = OlympicsDataProvider(path)
-StatsCollector.collect_medals_stats(provider, country, year)
+
+statsV1 = StatsCollector.collect_medals_stats(provider, country, year)
+print(statsV1)
+
+all_records = provider.get_applicable_records()
+statsV2 = StatsCollector.collect_medals_stats_v2(all_records, country, year)
+print(statsV2)
