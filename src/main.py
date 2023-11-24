@@ -2,6 +2,7 @@
 import os
 
 from DataProvider import OlympicsDataProvider
+from StatsCollector import StatsCollector
 
 
 ALLOWED_COUNTRIES = ["UKR", "USA"]
@@ -43,4 +44,4 @@ if (country not in ALLOWED_COUNTRIES or
     exit(1)
 
 provider = OlympicsDataProvider(path)
-print(len(provider.get_applicable_records()))
+StatsCollector.collect_medals_stats(provider, country, year)
