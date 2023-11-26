@@ -3,7 +3,7 @@ import os
 
 from src.data.DataProvider import OlympicsDataProvider
 from src.strategy.CommandContext import CommandContext
-from src.strategy.TotalCommand import TotalCommandStrategy
+from src.strategy.TotalCommandStrategy import TotalCommandStrategy
 
 ALLOWED_COUNTRIES = ["UKR", "USA"]
 ALLOWED_YEARS = ["2000", "2004", "2012"]
