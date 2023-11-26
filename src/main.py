@@ -51,17 +51,11 @@ if (country not in ALLOWED_COUNTRIES or
 
 output_path = args.output
 if os.path.exists(output_path):
-    print("Export path is not valid!")
+    print("Export path is not valid or file already exists!")
     exit(1)
 
 
 provider = OlympicsDataProvider(path)
 
-statsV1 = StatsCollector.collect_medals_stats(provider, country, year)
-print(statsV1)
-
-all_records = provider.get_applicable_records()
-statsV2 = StatsCollector.collect_medals_stats_v2(all_records, country, year)
-print(statsV2)
-
-exporter = TextFileExporter.export(output_path, statsV1)
+stats = StatsCollector.collect_overall_stats(provider, ["UKR", "USA"])
+exporter = TextFileExporter.export(output_path, stats)
