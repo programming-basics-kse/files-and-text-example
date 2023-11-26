@@ -8,3 +8,6 @@ class Item:
         self.sport = chunks[12]
         self.event = chunks[13]
         self.medal = chunks[14]
+
+    def __str__(self):
+        return f"{self.noc}: {self.year} - {self.medal} | {self.sport}"
