@@ -1,17 +1,18 @@
 import csv
-from Item import Item
+from src.data.Item import Item
 
 
 class OlympicsDataProvider:
     __records: set[Item]
 
     def __init__(self, path: str):
-        self.__records = self.__get_data_as_records(path)
+        self.__records = self.__get_data(path)
 
     def get_applicable_records(self, predicate=lambda x: True) -> set[Item]:
         return set(filter(predicate, self.__records))
 
-    def __get_data_as_records(self, path: str) -> set[Item]:
+    @staticmethod
+    def __get_data(path: str) -> set[Item]:
 
         MEDALS_INDEX = 14
 
