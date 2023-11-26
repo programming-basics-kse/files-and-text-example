@@ -1,7 +1,7 @@
 ﻿import argparse
 import os
 
-from DataProvider import OlympicsDataProvider
+from src.data.DataProvider import OlympicsDataProvider
 from src.strategy.CommandContext import CommandContext
 from src.strategy.TotalCommand import TotalCommandStrategy
 

@@ -1,4 +1,4 @@
-from src.DataProvider import OlympicsDataProvider
+from src.data.DataProvider import OlympicsDataProvider
 from src.strategy.CommandStrategy import CommandStrategy
 
 
