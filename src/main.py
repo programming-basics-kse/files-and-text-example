@@ -2,8 +2,8 @@
 import os
 
 from DataProvider import OlympicsDataProvider
-from StatsCollector import StatsCollector
-from DataExporter import TextFileExporter
+from src.strategy.CommandContext import CommandContext
+from src.strategy.TotalCommand import TotalCommandStrategy
 
 ALLOWED_COUNTRIES = ["UKR", "USA"]
 ALLOWED_YEARS = ["2000", "2004", "2012"]
@@ -37,7 +37,6 @@ parser.add_argument(
 args = parser.parse_args()
 print(args)
 
-
 path = args.data_path
 if not (os.path.exists(path) and os.path.isfile(path)):
     print("Data Source path is not valid!")
@@ -54,14 +53,11 @@ if os.path.exists(output_path):
     print("Export path is not valid!")
     exit(1)
 
-
 provider = OlympicsDataProvider(path)
 
-statsV1 = StatsCollector.collect_medals_stats(provider, country, year)
-print(statsV1)
+data = (provider, "2000")
 
-all_records = provider.get_applicable_records()
-statsV2 = StatsCollector.collect_medals_stats_v2(all_records, country, year)
-print(statsV2)
+context = CommandContext(TotalCommandStrategy())
+stats = context.execute_strategy(data)
 
-exporter = TextFileExporter.export(output_path, statsV1)
+print(stats)
