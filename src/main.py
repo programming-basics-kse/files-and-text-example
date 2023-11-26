@@ -1,6 +1,4 @@
-﻿import argparse
-import os
-
+﻿from ArgsProcessor import ArgsProcessor
 from src.data.DataProvider import OlympicsDataProvider
 from src.strategy.CommandContext import CommandContext
 from src.strategy.TotalCommandStrategy import TotalCommandStrategy
@@ -8,50 +6,25 @@ from src.strategy.TotalCommandStrategy import TotalCommandStrategy
 ALLOWED_COUNTRIES = ["UKR", "USA"]
 ALLOWED_YEARS = ["2000", "2004", "2012"]
 
-# ==================== #
-#   data_path          #
-#   -medals AUT 1976   #
-#   -output result.txt #
-# ==================== #
+# path = args.data_path
+# if not (os.path.exists(path) and os.path.isfile(path)):
+#     print("Data Source path is not valid!")
+#     exit(1)
+#
+# country, year = args.medals
+# if (country not in ALLOWED_COUNTRIES or
+#         year not in ALLOWED_YEARS):
+#     print("Country or Year invalid!")
+#     exit(1)
+#
+# output_path = args.output
+# if os.path.exists(output_path):
+#     print("Export path is not valid or file already exists!")
+#     exit(1)
 
-parser = argparse.ArgumentParser()
+args = ArgsProcessor().parse()
 
-parser.add_argument(
-    "data_path",
-    type=str,
-    metavar="data_path")
-
-parser.add_argument(
-    '-medals',
-    required=True,
-    nargs=2,
-    metavar=("country", "year")
-)
-
-parser.add_argument(
-    "-output",
-    type=str,
-    metavar="output_path"
-)
-
-args = parser.parse_args()
-print(args)
-
-path = args.data_path
-if not (os.path.exists(path) and os.path.isfile(path)):
-    print("Data Source path is not valid!")
-    exit(1)
-
-country, year = args.medals
-if (country not in ALLOWED_COUNTRIES or
-        year not in ALLOWED_YEARS):
-    print("Country or Year invalid!")
-    exit(1)
-
-output_path = args.output
-if os.path.exists(output_path):
-    print("Export path is not valid or file already exists!")
-    exit(1)
+path = "./data_source.tsv"
 
 provider = OlympicsDataProvider(path)
 
