@@ -50,7 +50,7 @@ if (country not in ALLOWED_COUNTRIES or
 
 output_path = args.output
 if os.path.exists(output_path):
-    print("Export path is not valid!")
+    print("Export path is not valid or file already exists!")
     exit(1)
 
 provider = OlympicsDataProvider(path)
