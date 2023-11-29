@@ -30,7 +30,7 @@ provider = OlympicsDataProvider(path)
 
 data = (provider, "2000")
 
-context = CommandContext(TotalCommandStrategy())
+context = CommandContext(provider, TotalCommandStrategy())
 stats = context.execute_strategy(data)
 
 print(stats)

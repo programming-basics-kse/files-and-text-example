@@ -3,8 +3,8 @@ from src.strategy.CommandStrategy import CommandStrategy
 
 
 class TotalCommandStrategy(CommandStrategy):
-    def execute(self, data):
-        return self.__collect_medals_stats(data[0], data[1], data[2])
+    def execute(self, provider, data):
+        return self.__collect_medals_stats(provider, data[1], data[2])
 
     @staticmethod
     def __collect_medals_stats(provider: OlympicsDataProvider,
