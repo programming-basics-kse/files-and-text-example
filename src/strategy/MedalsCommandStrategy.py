@@ -2,9 +2,9 @@ from src.data.DataProvider import OlympicsDataProvider
 from src.strategy.CommandStrategy import CommandStrategy
 
 
-class TotalCommandStrategy(CommandStrategy):
+class MedalsCommandStrategy(CommandStrategy):
     def execute(self, provider, data):
-        return self.__collect_medals_stats(provider, data[1], data[2])
+        return self.__collect_medals_stats(provider, data[0], data[1])
 
     @staticmethod
     def __collect_medals_stats(provider: OlympicsDataProvider,

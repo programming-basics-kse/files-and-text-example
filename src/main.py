@@ -1,6 +1,7 @@
 ﻿from ArgsProcessor import ArgsProcessor
 from src.data.DataProvider import OlympicsDataProvider
 from src.strategy.CommandContext import CommandContext
+from src.strategy.CommandResolver import CommandResolver
 from src.strategy.TotalCommandStrategy import TotalCommandStrategy
 
 ALLOWED_COUNTRIES = ["UKR", "USA"]
@@ -24,13 +25,11 @@ ALLOWED_YEARS = ["2000", "2004", "2012"]
 
 args = ArgsProcessor().parse()
 
-path = "./data_source.tsv"
+provider = OlympicsDataProvider(args.data_path)
 
-provider = OlympicsDataProvider(path)
+ctx = CommandResolver.get_command_with_params(args)
 
-data = (provider, "2000")
-
-context = CommandContext(provider, TotalCommandStrategy())
-stats = context.execute_strategy(data)
+context = CommandContext(provider, ctx[0])
+stats = context.execute_strategy(ctx[1])
 
 print(stats)
